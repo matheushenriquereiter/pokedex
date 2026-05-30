@@ -14,13 +14,21 @@
     <main>
       <form id="adicionar-pokemon-form">
         <label>
-          Nome:
-          <input type="text" name="nomePokemon" />
+          Nome ou número:
+          <input
+            id="nome-pokemon-input"
+            list="sugestoes-pokemon"
+            type="text"
+            placeholder="Digite seu pokémon..."
+            name="nomePokemon"
+          />
+          <datalist id="sugestoes-pokemon"> </datalist>
         </label>
 
-        <button type="submit">adicionar</button>
+        <button type="submit">Adicionar</button>
       </form>
-      <p id="erro-mensagem"></p>
+
+      <p id="erro-mensagem" class="erro-mensagem"></p>
 
       <div id="cards-pokemon"></div>
     </main>
