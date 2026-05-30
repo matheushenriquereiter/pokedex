@@ -45,10 +45,13 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
     return;
   }
 
+  const pokemonId = "0000" + pokemon.id;
+
   const cardPokemon = `
     <div>
         <h1>${pokemon.name}</h1>
         <img src="${pokemon.sprites.front_default}" />
+        <p>N° ${pokemonId.slice(pokemonId.length - 4)}</p>
     </div>
   `;
 
