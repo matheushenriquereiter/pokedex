@@ -9,9 +9,7 @@ const nomesPokemonsAdicionados = [];
 async function carregarSugestoes() {
   const pokemons = await obterPokemons();
 
-  for (let i = 0; i < pokemons.count; i++) {
-    const pokemon = pokemons.results[i];
-
+  for (pokemon of pokemons.results) {
     const nomePokemon = pokemon.name;
 
     const option = document.createElement("option");
@@ -28,36 +26,38 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
     .trim()
     .toLowerCase();
 
-  if (nomesPokemonsAdicionados.includes(nomePokemon)) {
-    erroMensagem.innerHTML = "Pokémon já adicionado";
+  if (nomePokemon === "") {
+    erroMensagem.innerHTML = "Digite um nome válido.";
     return;
   }
 
-  if (nomePokemon === "") {
-    erroMensagem.innerHTML = "Digite um nome válido";
+  adicionarPokemonForm.reset();
+
+  if (nomesPokemonsAdicionados.includes(nomePokemon)) {
+    erroMensagem.innerHTML = "Pokémon já adicionado.";
     return;
   }
 
   const pokemon = await obterPokemon(nomePokemon);
 
   if (pokemon === null) {
-    erroMensagem.innerHTML = "Pokémon não encontrado";
+    erroMensagem.innerHTML = "Pokémon não encontrado.";
     return;
   }
 
   const pokemonId = "0000" + pokemon.id;
 
   const cardPokemon = `
-    <div>
-        <h1>${pokemon.name}</h1>
-        <img src="${pokemon.sprites.front_default}" />
-        <p>N° ${pokemonId.slice(pokemonId.length - 4)}</p>
+    <div class="card-pokemon">
+        <h1 class="nome-pokemon">${pokemon.name}</h1>
+        <img class="imagem-pokemon" src="${pokemon.sprites.front_default}" />
+        <p class="id-pokemon">N° ${pokemonId.slice(pokemonId.length - 4)}</p>
     </div>
   `;
 
   nomesPokemonsAdicionados.push(nomePokemon);
   cardsPokemon.innerHTML += cardPokemon;
-  erroMensagem.innerHTML = "";
+  erroMensagem.innerHTML = "&nbsp;";
 });
 
 async function obterPokemon(nomePokemon) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,29 +8,41 @@
   </head>
   <body>
     <header>
-      <h1>PokéAPI</h1>
+      <div class="header-box">
+        <h1>PokéAPI</h1>
+
+        <nav>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
     </header>
 
     <main>
-      <form id="adicionar-pokemon-form">
-        <label>
-          Nome ou número:
-          <input
-            id="nome-pokemon-input"
-            list="sugestoes-pokemon"
-            type="text"
-            placeholder="Digite seu pokémon..."
-            name="nomePokemon"
-          />
-          <datalist id="sugestoes-pokemon"> </datalist>
-        </label>
+      <div class="form-container">
+        <form class="form" id="adicionar-pokemon-form">
+          <h2>Adicionar Pokémon</h2>
 
-        <button type="submit">Adicionar</button>
-      </form>
+          <label>
+            Nome ou número:
+            <input
+              id="nome-pokemon-input"
+              list="sugestoes-pokemon"
+              type="text"
+              placeholder="Digite seu pokémon..."
+              name="nomePokemon"
+            />
+            <datalist id="sugestoes-pokemon"> </datalist>
+          </label>
 
-      <p id="erro-mensagem" class="erro-mensagem"></p>
+          <button type="submit">Adicionar</button>
 
-      <div id="cards-pokemon"></div>
+          <p id="erro-mensagem" class="erro-mensagem">&nbsp;</p>
+        </form>
+      </div>
+
+      <div class="cards-pokemon-container">
+        <div class="cards-pokemon" id="cards-pokemon"></div>
+      </div>
     </main>
 
     <script src="main.js"></script>
