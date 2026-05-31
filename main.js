@@ -1,6 +1,6 @@
 const adicionarPokemonForm = document.getElementById("adicionar-pokemon-form");
 const cardsPokemon = document.getElementById("cards-pokemon");
-const erroMensagem = document.getElementById("erro-mensagem");
+const mensagem = document.getElementById("mensagem");
 const nomePokemonInput = document.getElementById("nome-pokemon-input");
 const datalist = document.getElementById("sugestoes-pokemon");
 
@@ -27,37 +27,52 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
     .toLowerCase();
 
   if (nomePokemon === "") {
-    erroMensagem.innerHTML = "Digite um nome válido.";
+    mensagem.innerHTML = "Digite um nome válido.";
+    mensagem.classList.add("erro");
+    mensagem.classList.remove("sucesso");
     return;
   }
 
   adicionarPokemonForm.reset();
 
   if (nomesPokemonsAdicionados.includes(nomePokemon)) {
-    erroMensagem.innerHTML = "Pokémon já adicionado.";
+    mensagem.innerHTML = "Pokémon já adicionado.";
+    mensagem.classList.add("erro");
+    mensagem.classList.remove("sucesso");
     return;
   }
 
   const pokemon = await obterPokemon(nomePokemon);
 
   if (pokemon === null) {
-    erroMensagem.innerHTML = "Pokémon não encontrado.";
+    mensagem.innerHTML = "Pokémon não encontrado.";
+    mensagem.classList.add("erro");
+    mensagem.classList.remove("sucesso");
     return;
   }
 
   const pokemonId = "0000" + pokemon.id;
+  let stats = "";
+
+  for (pokemonStat of pokemon.stats) {
+    stats += `<p>${pokemonStat.stat.name}: ${pokemonStat.base_stat}</p>`;
+  }
 
   const cardPokemon = `
     <div class="card-pokemon">
         <h1 class="nome-pokemon">${pokemon.name}</h1>
         <img class="imagem-pokemon" src="${pokemon.sprites.front_default}" />
+        ${stats}
         <p class="id-pokemon">N° ${pokemonId.slice(pokemonId.length - 4)}</p>
     </div>
   `;
 
   nomesPokemonsAdicionados.push(nomePokemon);
   cardsPokemon.innerHTML += cardPokemon;
-  erroMensagem.innerHTML = "&nbsp;";
+
+  mensagem.innerHTML = "Pokémon adicionado com sucesso.";
+  mensagem.classList.remove("erro");
+  mensagem.classList.add("sucesso");
 });
 
 async function obterPokemon(nomePokemon) {
