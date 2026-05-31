@@ -26,14 +26,14 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
     .trim()
     .toLowerCase();
 
+  adicionarPokemonForm.reset();
+
   if (nomePokemon === "") {
     mensagem.innerHTML = "Digite um nome válido.";
     mensagem.classList.add("erro");
     mensagem.classList.remove("sucesso");
     return;
   }
-
-  adicionarPokemonForm.reset();
 
   if (nomesPokemonsAdicionados.includes(nomePokemon)) {
     mensagem.innerHTML = "Pokémon já adicionado.";
@@ -68,6 +68,7 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
   `;
 
   nomesPokemonsAdicionados.push(nomePokemon);
+
   cardsPokemon.innerHTML += cardPokemon;
 
   mensagem.innerHTML = "Pokémon adicionado com sucesso.";
