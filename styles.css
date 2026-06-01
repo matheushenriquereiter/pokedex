@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  color: #fff;
   text-decoration: none;
 }
 
@@ -131,4 +130,12 @@ p {
 .id-pokemon {
   color: #2f2f2f;
   font-weight: bold;
+}
+
+h1, h2, label, a, button {
+  color: #e6e6e6;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
