@@ -55,7 +55,7 @@ adicionarPokemonForm.addEventListener("submit", async function (event) {
   let stats = "";
 
   for (pokemonStat of pokemon.stats) {
-    stats += `<p>${pokemonStat.stat.name}: ${pokemonStat.base_stat}</p>`;
+    stats += `<p class="capitalize">${pokemonStat.stat.name}: ${pokemonStat.base_stat}</p>`;
   }
 
   const cardPokemon = `
